@@ -59,7 +59,12 @@ class Feed extends Component {
       })
       .then(resData => {
         this.setState({
-          posts: resData.posts,
+          posts: resData.posts.map(post => {
+            return {
+              ...post,
+              imagePath: post.imageUrl  // added imagePath to the post fields
+            };
+          }),
           totalPosts: resData.totalItems,
           postsLoading: false
         });
